@@ -128,7 +128,7 @@ public class Mushroom : MonoBehaviour {
 		}
 
 		if (stage == 3 && Time.time - jumpStartTime > jumpInterval) {
-			SoundManager.PlaySound(jumpSound, true);
+			SoundManager.PlaySound(jumpSound, true, 0.15f);
 			jumpStartTime = Time.time;
 		}
 

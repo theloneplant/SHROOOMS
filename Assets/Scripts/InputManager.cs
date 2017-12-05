@@ -33,6 +33,7 @@ public class InputManager : MonoBehaviour {
 	private static string moveX, moveY;
 	private static string aimX, aimY;
 	private static string interact;
+	private static string start;
 	private static Vector3 prevMousePosition;
 	private static bool isDisabled;
 
@@ -56,6 +57,7 @@ public class InputManager : MonoBehaviour {
 		aimX = platform + "AimX";
 		aimY = platform + "AimY";
 		interact = platform + "Interact";
+		start = platform + "Start";
 	}
 
 	public static void HandleInput(Controller controller) {
@@ -65,7 +67,7 @@ public class InputManager : MonoBehaviour {
 		Vector2 keyboardMove = new Vector2(Input.GetAxis("KeyboardMoveX"), Input.GetAxis("KeyboardMoveY"));
 		
 		if (isDisabled) {
-			if (Input.anyKey) {
+			if (GetButton(start)) {
 				Application.LoadLevel("title");
 			}
 			return;
