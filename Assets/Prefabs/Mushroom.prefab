@@ -195,7 +195,7 @@ MonoBehaviour:
   speed: 800
   growTime: 5
   defaultStage: 1
-  blastRadius: 1
+  blastRadius: 1.3
   blastOffset: {x: 0, y: 0.2, z: 0}
   smallCollider: {fileID: 58130667448581064}
   mediumCollider: {fileID: 58512048151643098}

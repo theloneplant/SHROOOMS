@@ -19,7 +19,7 @@ public class SporeEmitter : MonoBehaviour {
 	void Update () {
 		if (Time.time - startTime > interval) {
 			if (Mushroom.makingSpores()) {
-				Vector3 pos = new Vector3(Random.Range(-width / 2f, width / 2f), Random.Range(-height / 2f, height / 2f) - 4f, 0);
+				Vector3 pos = new Vector3(Random.Range(-width / 2f, width / 2f), Random.Range(-height / 2f, height / 2f), 0);
 				GameObject instance = Instantiate(spore, pos, Quaternion.identity);
 				instance.GetComponent<Spore>().startHeight = 5f;
 				instance.GetComponent<Spore>().verticalSpeed = 0f;

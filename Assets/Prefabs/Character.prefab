@@ -392,35 +392,35 @@ MonoBehaviour:
     motionBlurAmount: 0.65
     color: 0
     distortion: 0
-    lowPass: 1900
+    lowPass: 4000
     speed: 3.2
   level2:
     bloomIntensity: 0.3
     motionBlurAmount: 0.8
     color: 0
     distortion: 0
-    lowPass: 700
+    lowPass: 2500
     speed: 3.4
   level3:
     bloomIntensity: 0.5
     motionBlurAmount: 1
     color: 0.1
     distortion: 30
-    lowPass: 600
+    lowPass: 1500
     speed: 3.6
   level4:
     bloomIntensity: 1
     motionBlurAmount: 1
     color: 0.3
     distortion: 60
-    lowPass: 500
+    lowPass: 800
     speed: 3.8
   level5:
     bloomIntensity: 2
     motionBlurAmount: 1
     color: 0.5
     distortion: 80
-    lowPass: 400
+    lowPass: 300
     speed: 4
 --- !u!212 &212035543344234428
 SpriteRenderer:

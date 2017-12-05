@@ -425,6 +425,7 @@ public class CharacterController : Controller {
 	private void HandleDistortion() {
 		lens.distortion.amount = Mathf.Lerp(lens.distortion.amount, targetIntoxication.distortion, Time.deltaTime);
 		lens.chromaticAberration.amount = Mathf.Lerp(lens.chromaticAberration.amount, targetIntoxication.distortion / 2f, Time.deltaTime);
+		lens.distortion.scale = (lens.distortion.amount / level5.distortion) * 0.33f + 1; // Scale is between 1-1.33
 	}
 
 	private void HandleHue() {
@@ -483,9 +484,11 @@ public class CharacterController : Controller {
 
 	private void OnCollisionEnter2D(Collision2D c) {
 		if (c.gameObject.GetComponent<Mushroom>() && c.gameObject.GetComponent<Mushroom>().getStage() == 3) {
+			if (!dead) {
+				SoundManager.PlaySound(deathSound, false, 1);
+			}
 			dead = true;
 			InputManager.Disable();
-			SoundManager.PlaySound(deathSound, false, 1);
 			moveInput = Vector2.zero;
 			trippyText.gameObject.SetActive(false);
 			deathText.gameObject.SetActive(true);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Mushroom : MonoBehaviour {
-	private const int maxCount = 50;
+	private const int maxCount = 40;
 
 	[Header("Spores")]
 	[Tooltip("Interval that spores are released")]

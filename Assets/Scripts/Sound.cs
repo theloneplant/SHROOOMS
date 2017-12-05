@@ -7,6 +7,7 @@ public class Sound : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		lowPass = GetComponent<AudioLowPassFilter>();
+		lowPass.cutoffFrequency = SoundManager.GetLowPass();
 	}
 	
 	// Update is called once per frame
