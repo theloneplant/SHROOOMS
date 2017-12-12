@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Mushroom : MonoBehaviour {
-	private const int maxCount = 40;
+	private const int maxCount = 60;
 
 	[Header("Spores")]
 	[Tooltip("Interval that spores are released")]
@@ -175,7 +175,6 @@ public class Mushroom : MonoBehaviour {
 		if (health <= 0) {
 			if (stage < 3) {
 				CreateSpore();
-				CharacterController.kills++;
 				count--;
 				Destroy(this.gameObject);
 				return;
@@ -186,7 +185,6 @@ public class Mushroom : MonoBehaviour {
 				if ( mushroom != this.gameObject && mushroom.GetComponent<Mushroom>() 
 						&& (mushroom.transform.position - transform.position + blastOffset).magnitude < blastRadius) {
 					mushroom.GetComponent<Mushroom>().CreateSpore();
-					CharacterController.kills++;
 					count--;
 					Destroy(mushroom);
 				}
@@ -209,8 +207,6 @@ public class Mushroom : MonoBehaviour {
 			SoundManager.PlaySound(killSound, true, 1);
 			CreateSpore();
 		}
-		CharacterController.kills++;
-		Debug.Log(CharacterController.kills);
 		count--;
 		Destroy(this.gameObject);
 	}
@@ -220,6 +216,8 @@ public class Mushroom : MonoBehaviour {
 	}
 
 	private void OnDestroy() {
+		Debug.Log("destroyed");
 		isTrippin = false;
+		count = 0;
 	}
 }

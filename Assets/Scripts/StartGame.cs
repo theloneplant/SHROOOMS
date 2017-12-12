@@ -4,8 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour {
+	private float startTime;
+
+	void Start() {
+		startTime = Time.time;
+	}
+
 	void Update () {
-		if (Input.anyKey) {
+		if (Time.time - startTime > 0.5f && Input.anyKey) {
 			Application.LoadLevel("main");
 		}
 	}

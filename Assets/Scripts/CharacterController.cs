@@ -69,6 +69,9 @@ public class CharacterController : Controller {
 	[Tooltip("Cooldown before looking for another target to eat")]
 	[SerializeField]
 	private float eatCooldown = 0.1f;
+	[Tooltip("Amount that the score will enlarge when you eat a mushroom")]
+	[SerializeField]
+	private float textEnlarge = 1.5f;
 	private float eatStartTime;
 	private GameObject closestMushroom = null;
 
@@ -82,7 +85,7 @@ public class CharacterController : Controller {
 	private Text trippyText;
 	[Tooltip("Text displayed to show the number of kills you got")]
 	[SerializeField]
-	private Text killsText;
+	private Text shrooomsText;
 
 	[System.Serializable]
 	public struct IntoxicationParams {
@@ -140,6 +143,7 @@ public class CharacterController : Controller {
 	private IntoxicationParams level5;
 	private int intoxication = 0;
 	private int mushroomsEaten = 0;
+	private int shroooms = 0;
 	private float mushroomStartTime;
 	private bool intoxicationChanged = false;
 	private IntoxicationParams targetIntoxication;
@@ -152,8 +156,6 @@ public class CharacterController : Controller {
 
 	private Animator animator;
 	private Rigidbody2D rb;
-
-	public static int kills = 0;
 	
 	void Start () {
 		animator = GetComponent<Animator>();
@@ -177,7 +179,9 @@ public class CharacterController : Controller {
 	void Update() {
 		InputManager.HandleInput(this);
 		GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
-		killsText.text = "Kills: " + kills;
+		shrooomsText.text = "SHROOOMS: " + shroooms;
+		float lerpScale = Mathf.Lerp(shrooomsText.gameObject.transform.localScale.x, 1, Time.deltaTime * 20);
+		shrooomsText.gameObject.transform.localScale = new Vector3(lerpScale, lerpScale, lerpScale);
 
 		if (dead) {
 			camera.GetComponent<Camera>().orthographicSize = Mathf.Lerp(camera.GetComponent<Camera>().orthographicSize, 2f, Time.deltaTime);
@@ -301,6 +305,8 @@ public class CharacterController : Controller {
 			}
 
 			mushroomsEaten++;
+			shroooms++;
+			shrooomsText.gameObject.transform.localScale = new Vector3(textEnlarge, textEnlarge, textEnlarge);
 			mushroomStartTime = Time.time;
 			SoundManager.PlaySound(eatSound, true, 1);
 			CheckIntoxicationLevel();
@@ -493,9 +499,5 @@ public class CharacterController : Controller {
 			trippyText.gameObject.SetActive(false);
 			deathText.gameObject.SetActive(true);
 		}
-	}
-
-	private void OnDestroy() {
-		kills = 0;
 	}
 }

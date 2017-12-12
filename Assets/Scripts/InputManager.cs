@@ -51,6 +51,9 @@ public class InputManager : MonoBehaviour {
 				|| Application.platform == RuntimePlatform.OSXEditor) {
 			platform = MAC_OS;
 		}
+		else {
+			platform = WINDOWS;
+		}
 
 		moveX = platform + "MoveX";
 		moveY = platform + "MoveY";

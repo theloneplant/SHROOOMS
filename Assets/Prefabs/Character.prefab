@@ -369,9 +369,10 @@ MonoBehaviour:
   eatRadius: 1
   eatOffset: {x: 0, y: 0.2, z: 0}
   eatCooldown: 0.1
+  textEnlarge: 1.5
   deathText: {fileID: 0}
   trippyText: {fileID: 0}
-  killsText: {fileID: 0}
+  shrooomsText: {fileID: 0}
   camera: {fileID: 0}
   soberTime: 15
   bloomIntensity: 0
