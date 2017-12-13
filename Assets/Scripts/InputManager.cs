@@ -94,8 +94,8 @@ public class InputManager : MonoBehaviour {
 			isMouseActive = false;
 		}
 		else {
-			float x = Input.GetAxis("KeyboardAimX");
-			float y = Input.GetAxis("KeyboardAimY");
+			float x = -Input.GetAxis("KeyboardAimX");
+			float y = -Input.GetAxis("KeyboardAimY");
 			aimDirection = new Vector2(x, y);
 		}
 

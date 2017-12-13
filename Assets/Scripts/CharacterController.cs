@@ -292,14 +292,13 @@ public class CharacterController : Controller {
 	}
 
 	void HandleInteraction() {
-		if (closestMushroom && closestMushroom.GetComponent<Mushroom>()) {
+		if (closestMushroom && closestMushroom.GetComponent<Mushroom>() && closestMushroom.GetComponent<Mushroom>().getStage() == 1) {
 			GameObject tmp = closestMushroom;
 			closestMushroom.GetComponent<Mushroom>().Kill();
 			closestMushroom = null;
 			HandleDisplaySign();
 
 			if (closestMushroom == tmp) {
-				Debug.Log("weird");
 				eatSign.SetActive(false);
 				closestMushroom = null;
 			}
@@ -310,6 +309,9 @@ public class CharacterController : Controller {
 			mushroomStartTime = Time.time;
 			SoundManager.PlaySound(eatSound, true, 1);
 			CheckIntoxicationLevel();
+		}
+		else {
+			eatSign.SetActive(false);
 		}
 	}
 
